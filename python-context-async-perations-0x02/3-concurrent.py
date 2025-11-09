@@ -5,9 +5,8 @@ from datetime import datetime
 async def async_fetch_users():
     """
     Asynchronously fetch all users from the database.
-    
     Returns:
-        list: All user records from the users table
+    list: All user records from the users table
     """
     print(f"[{datetime.now().strftime('%H:%M:%S.%f')}] Starting async_fetch_users()")
     
@@ -26,10 +25,8 @@ async def async_fetch_users():
 
 async def async_fetch_older_users():
     """
-    Asynchronously fetch users older than 40 from the database.
-    
-    Returns:
-        list: User records where age > 40
+    Asynchronously fetch users older than 40 from the database.     
+    Returns: list: User records where age > 40
     """
     print(f"[{datetime.now().strftime('%H:%M:%S.%f')}] Starting async_fetch_older_users()")
     
@@ -49,9 +46,7 @@ async def async_fetch_older_users():
 async def fetch_concurrently():
     """
     Execute both database queries concurrently using asyncio.gather().
-    
-    Returns:
-        tuple: Results from both queries (all_users, older_users)
+    Returns:  tuple: Results from both queries (all_users, older_users)
     """
     print(f"[{datetime.now().strftime('%H:%M:%S.%f')}] Starting concurrent execution with asyncio.gather()")
     
@@ -69,11 +64,8 @@ async def fetch_concurrently():
 async def async_fetch_users_by_age_range(min_age, max_age):
     """
     Asynchronously fetch users within a specific age range.
-    
-    Args:
-        min_age (int): Minimum age
-        max_age (int): Maximum age
-    
+    Args: min_age (int): Minimum age
+    max_age (int): Maximum age
     Returns:
         list: Users within the specified age range
     """
@@ -94,10 +86,8 @@ async def async_fetch_users_by_age_range(min_age, max_age):
 
 async def async_count_users():
     """
-    Asynchronously count total number of users.
-    
-    Returns:
-        int: Total number of users
+    Asynchronously count total number of users.     
+    Returns: int: Total number of users
     """
     print(f"[{datetime.now().strftime('%H:%M:%S.%f')}] Starting async_count_users()")
     
@@ -198,7 +188,7 @@ def main():
         older_users = []
     
     # Display results
-    print(f"\n📊 Query Results:")
+    print(f"\n Query Results:")
     print(f"All users: {len(all_users)} records")
     for user in all_users[:3]:  # Show first 3 users
         print(f"  - {user['name']} (Age: {user['age']})")
@@ -210,7 +200,7 @@ def main():
         print(f"  - {user['name']} (Age: {user['age']})")
     
     execution_time = (end_time - start_time).total_seconds()
-    print(f"\n⏱️  Concurrent execution time: {execution_time:.3f} seconds")
+    print(f"\n  Concurrent execution time: {execution_time:.3f} seconds")
     
     print("\n2. Running multiple queries concurrently:")
     print("-" * 40)
@@ -221,13 +211,13 @@ def main():
     
     all_users, older_users, young_adults, total_count = all_results
     
-    print(f"\n📊 Multiple Query Results:")
+    print(f"\n Multiple Query Results:")
     print(f"Total users: {total_count}")
     print(f"Users older than 40: {len(older_users)}")
     print(f"Young adults (20-30): {len(young_adults)}")
     
     execution_time = (end_time - start_time).total_seconds()
-    print(f"\n⏱️  Multiple concurrent execution time: {execution_time:.3f} seconds")
+    print(f"\n Multiple concurrent execution time: {execution_time:.3f} seconds")
     
     print("\n3. Performance comparison (sequential vs concurrent):")
     print("-" * 40)
