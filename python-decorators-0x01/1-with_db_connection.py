@@ -4,14 +4,10 @@ import functools
 def with_db_connection(func):
     """
     Decorator that automatically handles database connections.
-    
-    Opens a database connection before function execution, passes it to the function,
-    and ensures the connection is closed afterward.
-    
-    Args:
+    my own small code portion. 
+        Args:
         func: The function to be decorated (should accept a connection as first parameter)
-    
-    Returns:
+        Returns:
         Wrapped function with automatic connection management
     """
     @functools.wraps(func)
