@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """
 Unit tests for the utils.access_nested_map function.
-
 This module tests the behavior of the `access_nested_map` utility function
 to ensure it correctly retrieves nested dictionary values based on a provided path.
 All tests follow Python's unittest framework and conform to pycodestyle 2.5.
@@ -45,11 +44,6 @@ for the `access_nested_map` utility function to ensure
 it correctly retrieves nested dictionary values and raises
 appropriate exceptions for invalid paths.
 """
-
-import unittest
-from parameterized import parameterized
-from typing import Any, Dict, Tuple
-from utils import access_nested_map
 
 
 class TestAccessNestedMap(unittest.TestCase):
