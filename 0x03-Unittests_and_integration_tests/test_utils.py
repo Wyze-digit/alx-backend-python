@@ -12,6 +12,7 @@ from typing import Any, Dict, Tuple
 from utils import access_nested_map
 from unittest.mock import patch, Mock 
 from utils import get_json
+from utils import memoize
 
 
 class TestAccessNestedMap(unittest.TestCase):
@@ -111,6 +112,45 @@ class TestGetJson(unittest.TestCase):
             
             # Assert the result matches test_payload
             self.assertEqual(result, test_payload)
+
+
+if __name__ == '__main__':
+    unittest.main()
+
+class TestMemoize(unittest.TestCase):
+    """Test cases for memoize decorator"""
+
+    def test_memoize(self):
+        """Test that memoize caches the result properly"""
+        
+        class TestClass:
+            """Test class with memoized property"""
+            
+            def a_method(self):
+                """Method to be memoized"""
+                return 42
+
+            @memoize
+            def a_property(self):
+                """Memoized property that calls a_method"""
+                return self.a_method()
+
+        # Create instance and mock a_method
+        with patch.object(TestClass, 'a_method') as mock_method:
+            mock_method.return_value = 42
+            
+            test_instance = TestClass()
+            
+            # Call a_property twice
+            result1 = test_instance.a_property
+            result2 = test_instance.a_property
+            
+            # Assert both calls return correct result
+            self.assertEqual(result1, 42)
+            self.assertEqual(result2, 42)
+            
+            # Assert a_method was called only once
+            mock_method.assert_called_once()
 
 
 if __name__ == '__main__':
